@@ -23,6 +23,11 @@
 
 
 bool Adafruit_MQTT_Client::connectServer() {
+  // Check if connection is already established
+  if(client->connected()) {
+    return true;
+  }
+
   // Grab server name from flash and copy to buffer for name resolution.
   memset(buffer, 0, sizeof(buffer));
   strcpy((char *)buffer, servername);
